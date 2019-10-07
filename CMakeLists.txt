@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 
 
 #add_library(Core library.c library.h)
-add_library(Core SHARED source/Core.c publicHeaders/Core.h publicHeaders/types.h private/source/private.c private/headers/private.h private/headers/structures.h private/headers/defines.h private/headers/functions.h)
+add_library(Core SHARED source/Core.c publicHeaders/Core.h publicHeaders/types.h private/source/private.c private/headers/private.h private/headers/structures.h private/headers/defines.h private/headers/functions.h private/headers/libstring.h private/source/libstring.c)
 
 target_include_directories(Core PRIVATE private/headers publicHeaders)
 set_target_properties(Core PROPERTIES PUBLIC_HEADER publicHeaders/Core.h)

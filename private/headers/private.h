@@ -14,4 +14,6 @@
 #include "structures.h"
 #include "functions.h"
 
+#include "libstring.h"
+
 #endif //CORE_PRIVATE_H
