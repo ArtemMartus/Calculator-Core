@@ -26,4 +26,12 @@
 void hello(void);
 int isFullyWritten(const char* str);
 
+typedef struct {
+    int one;
+    int two;
+    double three;
+} test;
+
+void structure(test *t);
+
 #endif //CORE_LIBRARY_H

@@ -15,6 +15,12 @@ int isFullyWritten(const char* str){
 }
 
 
+void structure(test *t){
+    t->one=1;
+    t->two=2;
+    t->three=3;
+}
+
 
 void hello(void) {
     printf("Hello, World!\n");
