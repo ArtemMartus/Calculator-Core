@@ -28,7 +28,7 @@ struct abstract_tree_info{
  */
 struct abstract_tree_node{
     int type_code;
-	String rawValue;
+	const char* rawValue;
     struct abstract_tree_node* right;
     struct abstract_tree_node* left;
     struct abstract_tree_node* node;
