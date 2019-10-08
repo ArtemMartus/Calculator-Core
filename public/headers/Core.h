@@ -1,13 +1,11 @@
-#ifndef CORE_CORE_H
-#define CORE_CORE_H
+#pragma once
 
-#include "types.h"
+#include <structures.h>
 
-struct abstract_tree*       buildTree(const char* str);
-void                        releaseTree(struct abstract_tree* tree);
-struct abstract_tree*       evaluateStep(struct abstract_tree* tree);
-const char*                 traverseTree(struct abstract_tree* tree);
-BOOL                        canTreeBeSolved(struct abstract_tree* tree);
-BOOL                        isTreeWellFormatted(struct abstract_tree* tree);
+abstract_tree*              buildTree(const char* str);
+void                        releaseTree(abstract_tree* tree);
+abstract_tree*              evaluateStep(abstract_tree* tree);
+const char*                 traverseTree(abstract_tree* tree);
+bool                        canTreeBeSolved(abstract_tree* tree);
+bool                        isTreeWellFormatted(abstract_tree* tree);
 
-#endif //CORE_CORE_H
