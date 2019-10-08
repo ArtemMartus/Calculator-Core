@@ -8,28 +8,27 @@
 /**
  * @brief Abstract tree structure container for abstract_tree_nodes
  */
-typedef struct {
-    struct abstract_tree_info* info;
-    struct abstract_tree_node* node;
-}abstract_tree;
+struct abstract_tree {
+	struct abstract_tree_info *info;
+	struct abstract_tree_node *node;
+};
 
 /**
  * @brief Used to represent some descriptive data about structure
  */
-struct abstract_tree_info{
-	int  canBeSolved;
-	int  isGoodFormat;
+struct abstract_tree_info {
+	bool canBeSolved;
+	bool isGoodFormat;
 };
 
 /**
  * @brief Binary tree node with type, raw value and pointers to neighbours
  */
-struct abstract_tree_node{
-    int type_code;
-	const char* rawValue;
-	struct abstract_tree_node* right;
-	struct abstract_tree_node* left;
-	struct abstract_tree_node* node;
-	struct abstract_tree_node* parent;
+struct abstract_tree_node {
+	int type_code;
+	const char *rawValue;
+	struct abstract_tree_node *right;
+	struct abstract_tree_node *left;
+	struct abstract_tree_node *parent;
 };
 

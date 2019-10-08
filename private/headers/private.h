@@ -10,5 +10,6 @@
 
 #include "structures.h"
 #include "functions.h"
+#include "Core.h"
 
 

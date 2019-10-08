@@ -5,72 +5,100 @@
 
 #include "private.h"
 #include <iostream>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
-bool checkFormat(const char* str) {
-    if(!str)
-	    return false;
-    int eqCount = 0;
+bool checkFormat(string str) {
+	if (str.empty())
+		return false;
+	int eqCount = count(str.begin(), str.end(), '=');
+
+	if (eqCount > 1) // 0 or 1 '=' allowed currently
+		return false;
+
+	/**
+	 * Check out is[digit|graph|punct] on the bottom of that page:
+	 * https://en.cppreference.com/w/cpp/string/byte/isdigit
+	 */
+	/// space = 0, num = 1, operator = 2
+	int num = 0;
+	for (char i : str) {
+		auto c = (unsigned char) i;
+		if (!isgraph(c))
+			continue; /*num = 0;*/ /// We don't really want to store information about spaces
+		else {
+			if (isdigit(c)) {
+				if (num == 0) num = 1;
+				else if (num == 1) continue;
+				else if (num == 2) num = 1;
+			} else if (ispunct(c) && c != '.' && c != ',') {
+				if (num == 0) num = 2;
+				else if (num == 1) num = 2;
+				else if (num == 2) return false; /// Currently it's not allowed to place two operators in a row
+			} else {
+				/// something not actually part of a math equation passed around
+				return false;
+			}
+		}
+	}
 
 
-    if(eqCount > 1) // 0 or 1 '=' allowed currently
-	    return false;
-    //TODO: we should check further for typos
-    return true;
+	return true;
 }
 
-abstract_tree_node* buildNode(const char* equation, abstract_tree_node* parent){
-	if(!parent || !equation)
+abstract_tree_node *buildNode(string equation, abstract_tree_node *parent) {
+	if (!parent || equation.empty())
 		return nullptr;
 
-	abstract_tree_node* node = nullptr;
+	abstract_tree_node *node = nullptr;
 	//TODO: implement this
 	return node;
 }
 
 void buildTreeHelper(abstract_tree *tree) {
-	if(!tree)return;
-    // look for operators with priority
-    // tree->node->rawValue equals whole equation as a string
-    const char* savedEquationString = tree->node->rawValue;
+	if (!tree)return;
+	// look for operators with priority
+	// tree->node->rawValue equals whole equation as a string
+	string savedEquationString = tree->node->rawValue;
 	tree->node->rawValue = "=";
 	tree->node->type_code = 0;
 }
 
 bool checkIfTreeCanBeSolved(abstract_tree *tree) {
-    return true; //TODO: implement this
+	return true; //TODO: implement this
 }
 
 void releaseTreeNode(abstract_tree_node *node) {
-    if(!node)
-	    return;
-    releaseTreeNode(node->right);
-    releaseTreeNode(node->left);
+	if (!node)
+		return;
+	releaseTreeNode(node->right);
+	releaseTreeNode(node->left);
 }
 
-void *lib_malloc(size_t size, const char* purpose) {
-	D(cout<<"Allocating "<<size<<" bytes for "<<purpose<<"\n");
+void *lib_malloc(size_t size, const string &purpose) {
+	D(cout << "Allocating " << size << " bytes for " << purpose << "\n");
 	memory_used += size;
-    return malloc(size);
+	return malloc(size);
 }
 
-void lib_free(void *pointer, const char* description, int size) {
-    if(!pointer||!description||size<=0)
-	    return;
+void lib_free(void *pointer, const string &description, size_t size) {
+	if (!pointer || description.empty() || size == 0)
+		return;
 
-	D(cout<<"Freeing pointer with description:[ "<<description<<" ]\n");
-    free(pointer);
-	memory_freed+=size;
+	D(cout << "Freeing pointer with description:[ " << description << " ]\n");
+	free(pointer);
+	memory_freed += size;
 }
 
-const char *traverseNode(abstract_tree_node *node) {
+string traverseNode(abstract_tree_node *node) {
 	//TODO: implement traversing
 	// left-most
 	// current
 	// right
-    return "Hello world";
+	return "Hello world";
 }
 
-unsigned long memory_used=0;
-unsigned long memory_freed=0;
+uint64_t memory_used = 0;
+uint64_t memory_freed = 0;
