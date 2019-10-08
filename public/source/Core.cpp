@@ -75,13 +75,13 @@ const char *traverseTree(abstract_tree *tree) {
 	return traverseNode(tree->node);
 }
 
-bool canTreeBeSolved(abstract_tree *tree) {
+int canTreeBeSolved(abstract_tree *tree) {
 	if(!tree || !tree->info)
 		return false;
 	return tree->info->canBeSolved;
 }
 
-bool isTreeWellFormatted(abstract_tree *tree) {
+int isTreeWellFormatted(abstract_tree *tree) {
 	if(!tree || !tree->info)
 		return false;
 	return tree->info->isGoodFormat;
