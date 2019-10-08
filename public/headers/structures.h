@@ -16,8 +16,8 @@ struct abstract_tree {
  * @brief Used to represent some descriptive data about structure
  */
 struct abstract_tree_info{
-	bool  canBeSolved;
-	bool  isGoodFormat;
+	int  canBeSolved;
+	int  isGoodFormat;
 };
 
 /**
@@ -26,9 +26,9 @@ struct abstract_tree_info{
 struct abstract_tree_node{
     int type_code;
 	const char* rawValue;
-    abstract_tree_node* right;
-    abstract_tree_node* left;
-    abstract_tree_node* node;
-    abstract_tree_node* parent;
+	struct abstract_tree_node* right;
+	struct abstract_tree_node* left;
+	struct abstract_tree_node* node;
+	struct abstract_tree_node* parent;
 };
 

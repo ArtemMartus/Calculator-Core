@@ -4,7 +4,6 @@
 
 
 #include "private.h"
-#include <cstdarg>
 #include <iostream>
 
 using namespace std;
@@ -37,12 +36,6 @@ void buildTreeHelper(abstract_tree *tree) {
     const char* savedEquationString = tree->node->rawValue;
 	tree->node->rawValue = "=";
 	tree->node->type_code = 0;
-//	int midIndex = stringFind(savedEquationString,tree->node->rawValue);
-//	String subLeft = stringSub(savedEquationString,0,midIndex);
-//	String subRight = stringSub(savedEquationString,midIndex+1,savedEquationString->size);
-//
-//	tree->node->right = buildNode(subRight,tree->node);
-//	tree->node->left = buildNode(subLeft,tree->node);
 }
 
 bool checkIfTreeCanBeSolved(abstract_tree *tree) {
