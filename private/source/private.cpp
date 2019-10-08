@@ -100,5 +100,13 @@ string traverseNode(abstract_tree_node *node) {
 	return "Hello world";
 }
 
+uint64_t statMemoryFreed() {
+	return memory_freed;
+}
+
+uint64_t statMemoryAllocated() {
+	return memory_used;
+}
+
 uint64_t memory_used = 0;
 uint64_t memory_freed = 0;

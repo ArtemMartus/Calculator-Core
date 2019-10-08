@@ -79,8 +79,6 @@ const char *traverseTree(abstract_tree *tree) {
 	if (!tree || !tree->node)
 		return 0;
 
-	D(cout << "Until now memory used " << memory_used << ", memory freed " << memory_freed << endl)
-
 	return traverseNode(tree->node).c_str();
 }
 

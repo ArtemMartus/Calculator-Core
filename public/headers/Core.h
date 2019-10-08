@@ -8,11 +8,13 @@
 
 #define EXPORT
 #include <stdbool.h>
+#include <stdint.h>
 
 #else
 
 #define EXPORT extern "C"
 #include <cstdbool>
+#include <cstdint>
 
 #endif
 
@@ -56,3 +58,13 @@ EXPORT bool canTreeBeSolved(struct abstract_tree *tree);
  * @return tree->info->isGoodFormat boolean
  */
 EXPORT bool isWellFormatted(struct abstract_tree *tree);
+
+/**
+ * @brief returns internal allocated for abstract tree memory statistics
+ */
+EXPORT uint64_t statMemoryAllocated();
+
+/**
+ * @brief returns related to abstract tree statistics
+ */
+EXPORT uint64_t statMemoryFreed();
