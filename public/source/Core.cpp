@@ -57,8 +57,6 @@ void releaseTree(abstract_tree *tree) {
 
 abstract_tree *evaluateStep(abstract_tree *tree) {
 	if(!tree) return 0;
-	if (!tree->info->canBeSolved)
-		return tree;
 
 	//TODO: implement some dark magic
 	return tree; // try this for now
@@ -66,23 +64,11 @@ abstract_tree *evaluateStep(abstract_tree *tree) {
 
 const char *traverseTree(abstract_tree *tree) {
 	if(!tree)
-		return "error";
+		return 0;
 	if(!tree->node)
-		return "error";
+		return 0;
 
 	D(cout<<"Until now memory used "<<memory_used<<", memory freed "<<memory_freed<<endl)
 
 	return traverseNode(tree->node);
-}
-
-int canTreeBeSolved(abstract_tree *tree) {
-	if(!tree || !tree->info)
-		return false;
-	return tree->info->canBeSolved;
-}
-
-int isTreeWellFormatted(abstract_tree *tree) {
-	if(!tree || !tree->info)
-		return false;
-	return tree->info->isGoodFormat;
 }

@@ -1,16 +1,17 @@
-//
-// Created by Artem Martus on 10/7/19.
-//
+/**
+ * @author Created by Artem Martus on 10/7/19.
+ * @brief Core calculator public API structures describing header
+*/
 
 #pragma once
 
 /**
  * @brief Abstract tree structure container for abstract_tree_nodes
  */
-struct abstract_tree {
+typedef struct {
     struct abstract_tree_info* info;
     struct abstract_tree_node* node;
-};
+}abstract_tree;
 
 /**
  * @brief Used to represent some descriptive data about structure
