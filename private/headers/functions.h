@@ -76,10 +76,9 @@ extern uint64_t memory_freed;
 
 /**
  * @brief uncomment this to remove all debug print information
+ * NDEBUG is standard C macro
  */
-#define _DEBUG
-
-#ifdef _DEBUG
+#ifndef NDEBUG
 #define D(x) {x;}
 #else
 #define D(x)
